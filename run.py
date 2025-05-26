@@ -2,6 +2,7 @@ import os
 import paramiko
 import requests
 import json
+import time
 from datetime import datetime, timezone, timedelta
 
 def ssh_multiple_connections(hosts_info, command):
@@ -12,6 +13,7 @@ def ssh_multiple_connections(hosts_info, command):
         username = host_info['username']
         password = host_info['password']
         try:
+            time.sleep(5)
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh.connect(hostname=hostname, port=22, username=username, password=password)
